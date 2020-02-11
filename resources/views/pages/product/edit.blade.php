@@ -47,7 +47,7 @@
 								<label class="col-md-2 control-label">SRP <span class="text-danger">*</span></label>
 								<div class="col-md-2" id="input-srp">
 									<input type="text" name="srp" id="srp"  value="{{$products->srp}}" class="form-control" placeholder="srp">
-									<span><i>tax-exclusive price</i></span>
+									<span id="span-srp"><i>tax-exclusive price</i></span>
 								</div>
 								<div class="col-md-1 text-center"> + </div>
 								<div class="col-md-2" id="input-tax">
@@ -196,10 +196,92 @@
 <!-- END MAIN CONTENT -->
 <script>
 
+	function field_errors(){
+		$('#itemcode').keyup(function(e){
+							e.preventDefault();
+							if($('#itemcode').val() == '')
+							{
+								$('#form-itemcode').addClass('has-error');
+								$('#error-itemcode').remove();
+								$('#input-itemcode').append("<span class='text-danger' id='error-itemcode'><i>This field is required</i></span>");
+							}
+							else
+							{
+								$('#form-itemcode').removeClass('has-error');
+								$('#error-itemcode').remove();
+							}
+							
+						});
 
+						$('#itemname').keyup(function(e){
+							e.preventDefault();
+							if($('#itemname').val() == '')
+							{
+								$('#form-itemname').addClass('has-error');
+								$('#error-itemname').remove();
+								$('#input-itemname').append("<span class='text-danger' id='error-itemname'><i>This field is required</i></span>");
+							}
+							else
+							{
+								$('#form-itemname').removeClass('has-error');
+								$('#error-itemname').remove();
+							}
+							
+						});
+
+						$('#dp').keyup(function(e){
+							
+							e.preventDefault();
+							if($('#dp').val() == '')
+							{
+								$('#form-dp').addClass('has-error');
+								$('#error-dp').remove();
+								$('#input-dp').append("<span class='text-danger' id='error-dp'><i>This field is required</i></span>");
+							}
+							else if($.isNumeric($('#dp').val()) == false)
+							{
+								$('#form-dp').addClass('has-error');
+								$('#error-dp').remove();
+								$('#input-dp').append("<span class='text-danger' id='error-dp'><i>Please enter a valid number</i></span>");
+							}
+							else
+							{
+								$('#form-dp').removeClass('has-error');
+								$('#error-dp').remove();
+							}
+							
+						});
+
+						$('#srp').keyup(function(e){
+							
+							e.preventDefault();
+							if($('#srp').val() == '')
+							{
+								$('#form-srp').addClass('has-error');
+								$('#error-srp').remove();
+								$('#input-srp').append("<span class='text-danger' id='error-srp'><i>This field is required</i></span>");
+								$('#srp-tax').val('');
+								$('#span-srp').hide();
+							}
+							else if($.isNumeric($('#srp').val()) == false)
+							{
+								$('#form-srp').addClass('has-error');
+								$('#error-srp').remove();
+								$('#input-srp').append("<span class='text-danger' id='error-srp'><i>Please enter a valid number</i></span>");
+								$('#srp-tax').val('');
+							}
+							else
+							{
+								$('#form-srp').removeClass('has-error');
+								$('#error-srp').remove();
+								$('#span-srp').show();
+							}
+							
+						});
+	}
 	
 	$(document).ready(function(){		
-
+		field_errors();
 		//START Enter SRP
 		$('#srp').keyup(function(e){
 			e.preventDefault();
@@ -290,87 +372,7 @@
 							
 						}
 
-						$('#itemcode').keyup(function(e){
-							e.preventDefault();
-							if($('#itemcode').val() == '')
-							{
-								$('#form-itemcode').addClass('has-error');
-								$('#error-itemcode').remove();
-								$('#input-itemcode').append("<span class='text-danger' id='error-itemcode'><i>This field is required</i></span>");
-							}
-							else
-							{
-								$('#form-itemcode').removeClass('has-error');
-								$('#error-itemcode').remove();
-							}
-							
-						});
-
-						$('#itemname').keyup(function(e){
-							e.preventDefault();
-							if($('#itemname').val() == '')
-							{
-								$('#form-itemname').addClass('has-error');
-								$('#error-itemname').remove();
-								$('#input-itemname').append("<span class='text-danger' id='error-itemname'><i>This field is required</i></span>");
-							}
-							else
-							{
-								$('#form-itemname').removeClass('has-error');
-								$('#error-itemname').remove();
-							}
-							
-						});
-
-						$('#dp').keyup(function(e){
-							
-							e.preventDefault();
-							if($('#dp').val() == '')
-							{
-								$('#form-dp').addClass('has-error');
-								$('#error-dp').remove();
-								$('#input-dp').append("<span class='text-danger' id='error-dp'><i>This field is required</i></span>");
-							}
-							else if($.isNumeric($('#dp').val()) == false)
-							{
-								$('#form-dp').addClass('has-error');
-								$('#error-dp').remove();
-								$('#input-dp').append("<span class='text-danger' id='error-dp'><i>Please enter a valid number</i></span>");
-							}
-							else
-							{
-								$('#form-dp').removeClass('has-error');
-								$('#error-dp').remove();
-							}
-							
-						});
-
-						$('#srp').keyup(function(e){
-							
-							e.preventDefault();
-							if($('#srp').val() == '')
-							{
-								$('#form-srp').addClass('has-error');
-								$('#error-srp').remove();
-								$('#input-srp').append("<span class='text-danger' id='error-srp'><i>This field is required</i></span>");
-								$('#srp-tax').val('');
-								$('#span-srp').hide();
-							}
-							else if($.isNumeric($('#srp').val()) == false)
-							{
-								$('#form-srp').addClass('has-error');
-								$('#error-srp').remove();
-								$('#input-srp').append("<span class='text-danger' id='error-srp'><i>Please enter a valid number</i></span>");
-								$('#srp-tax').val('');
-							}
-							else
-							{
-								$('#form-srp').removeClass('has-error');
-								$('#error-srp').remove();
-								$('#span-srp').show();
-							}
-							
-						});
+						field_errors();
 
 						$('#span-srp').hide();
 						//END for loop display errors

@@ -58,7 +58,7 @@
 										</a>	
 
 									</div>
-									<span><i>mm-dd-yyyy</i></span>
+									<!-- <span><i>mm-dd-yyyy</i></span> -->
 								</div>
 							</div>
 						

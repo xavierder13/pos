@@ -12,29 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('pages.inputs');
+    return view('auth.login');
 });
-Route::get('/index', function () {
-    return view('pages.product.index');
-});
+// Route::get('/index', function () {
+//     return view('pages.product.index');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //Product Routes
-// Route::group(['prefix' => 'products', 'middleware' => ['auth']], function () {
-// 	Route::get('/create','ProductController@createproduct')->name('createproduct');
-// 	Route::get('/view','ProductController@index')->name('viewproduct');
-// 	Route::post('/store','ProductController@storeproduct')->name('storeproduct');
-// 	Route::get('/edit/{productid}','ProductController@editproduct')->name('editproduct');
-// });
-Route::get('product/index','ProductController@index')->name('viewproduct');
-Route::get('product/create','ProductController@createproduct')->name('createproduct');
-Route::post('product/store','ProductController@storeproduct')->name('storeproduct');
-Route::get('product/edit/{productid}','ProductController@editproduct')->name('editproduct');
-Route::post('product/update', 'ProductController@updateproduct')->name('updateproduct');
-Route::get('product/delete/{productid}', 'ProductController@deleteproduct')->name('deleteproduct');
+Route::group(['prefix' => 'product', 'middleware' => 'auth'], function(){
+	Route::get('index','ProductController@index')->name('viewproduct');
+	Route::get('create','ProductController@createproduct')->name('createproduct');
+	Route::post('store','ProductController@storeproduct')->name('storeproduct');
+	Route::get('edit/{productid}','ProductController@editproduct')->name('editproduct');
+	Route::post('update', 'ProductController@updateproduct')->name('updateproduct');
+	Route::get('delete/{productid}', 'ProductController@deleteproduct')->name('deleteproduct');
+});
 
 //Category Routes
 Route::post('category/store','CategoryController@storecategory')->name('storecategory');
@@ -43,27 +39,43 @@ Route::post('category/store','CategoryController@storecategory')->name('storecat
 Route::post('brand/store','BrandController@storebrand')->name('storebrand');
 
 //Tax Routes
-Route::get('tax/index', 'TaxController@index')->name('viewtax');
-Route::get('tax/getdata', 'TaxController@getdata')->name('gettax');
-Route::post('tax/store', 'TaxController@storetax')->name('storetax');
-Route::get('tax/edit', 'TaxController@edittax')->name('edittax');
-Route::post('tax/udpate', 'TaxController@updatetax')->name('updatetax');
-Route::get('tax/delete', 'TaxController@deletetax')->name('deletetax');
+Route::group(['prefix' => 'tax', 'middleware' => 'auth'], function(){
+	Route::get('index', 'TaxController@index')->name('viewtax');
+	Route::get('getdata', 'TaxController@getdata')->name('gettax');
+	Route::post('store', 'TaxController@storetax')->name('storetax');
+	Route::get('edit', 'TaxController@edittax')->name('edittax');
+	Route::post('udpate', 'TaxController@updatetax')->name('updatetax');
+	Route::get('delete', 'TaxController@deletetax')->name('deletetax');
+});
 
 //Supplier Routes
-Route::get('supplier/index', 'SupplierController@index')->name('viewsupplier');
-Route::get('supplier/create', 'SupplierController@createsupplier')->name('createsupplier');
-Route::post('supplier/store', 'SupplierController@storesupplier')->name('storesupplier');
-Route::get('supplier/edit/{supplierid}', 'SupplierController@editsupplier')->name('editsupplier');
-Route::post('supplier/update', 'SupplierController@updatesupplier')->name('updatesupplier');
-Route::get('supplier/delete/{supplierid}', 'SupplierController@deletesupplier')->name('deletesupplier');
+Route::group(['prefix' => 'supplier', 'middleware' => 'auth'], function(){
+	Route::get('index', 'SupplierController@index')->name('viewsupplier');
+	Route::get('create', 'SupplierController@createsupplier')->name('createsupplier');
+	Route::post('store', 'SupplierController@storesupplier')->name('storesupplier');
+	Route::get('edit/{supplierid}', 'SupplierController@editsupplier')->name('editsupplier');
+	Route::post('update', 'SupplierController@updatesupplier')->name('updatesupplier');
+	Route::get('delete/{supplierid}', 'SupplierController@deletesupplier')->name('deletesupplier');
+});
 
 //Customer Routes
-Route::get('customer/index', 'CustomerController@index')->name('viewcustomer');
-Route::get('customer/create', 'CustomerController@createcustomer')->name('createcustomer');
-Route::post('customer/store', 'CustomerController@storecustomer')->name('storecustomer');
-Route::get('customer/edit/{customerid}', 'CustomerController@editcustomer')->name('editcustomer');
-Route::post('customer/update', 'CustomerController@updatecustomer')->name('updatecustomer');
-Route::get('customer/delete/{customerid}', 'CustomerController@deletecustomer')->name('deletecustomer');
+Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function(){
+	Route::get('index', 'CustomerController@index')->name('viewcustomer');
+	Route::get('create', 'CustomerController@createcustomer')->name('createcustomer');
+	Route::post('store', 'CustomerController@storecustomer')->name('storecustomer');
+	Route::get('edit/{customerid}', 'CustomerController@editcustomer')->name('editcustomer');
+	Route::post('update', 'CustomerController@updatecustomer')->name('updatecustomer');
+	Route::get('delete/{customerid}', 'CustomerController@deletecustomer')->name('deletecustomer');
+});
+
+//Purchase Order Routes
+Route::group(['prefix' => 'PurchaseOrder', 'middleware' => ['auth']], function(){
+	Route::get('create', 'PurchaseOrderController@createpo')->name('createpo');
+});
+
+//Xavier Routes
+Route::group(['prefix' => 'xavier', 'middleware' => ['auth']], function(){
+	Route::get('create', 'XavierController@createxavier')->name('createxavier');
+});
 
 

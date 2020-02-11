@@ -18,7 +18,7 @@
 				</ul>
 			</div>
 
-			<div class="alert alert-success hide"></div>
+			<div class="alert alert-success"></div>
 			
         	<form id="form-customer">
         		<div class="form-horizontal">
@@ -58,7 +58,7 @@
 										</a>	
 
 									</div>
-									<span><i>mm-dd-yyyy</i></span>
+									<!-- <span><i>mm-dd-yyyy</i></span> -->
 								</div>
 							</div>
 						
@@ -122,6 +122,8 @@
 
 	
 	$(document).ready(function(){
+
+		$('.alert').addClass('hidden');
 
 		$('#btn-add-customer').click(function(e){
 			e.preventDefault();

@@ -23,7 +23,7 @@
 			@endif
         	<div class="form-horizontal">
         		<div class="pull-right">
-					<a href="{{route('createsupplier')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Product</a>
+					<a href="{{route('createsupplier')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Supplier</a>
 					<br><br>
 				</div>
 				<div class="row">

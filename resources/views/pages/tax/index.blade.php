@@ -30,8 +30,8 @@
 						        <tr>
 						            <th width="30%">Tax Code Name</th>
 						            <th width="30%">Tax Rate</th>
-						            <th width="25%">Status</th>
-						            <th width="15%">Action</th>
+						            <th width="20%">Status</th>
+						            <th width="20%">Action</th>
 						        </tr>
 						    </thead>
 
@@ -214,7 +214,9 @@
 						$('.alert').delay(5000).fadeOut();
 						$('#modal-tax').modal('hide'); 
 						$('#form-tax')[0].reset();
-						taxtable.ajax.reload();
+						// taxtable.ajax.reload();
+						taxtable.clear().draw();
+						fetch_tax();
 						
 					}
 					else if(response.success_update)
@@ -227,7 +229,9 @@
 						$('.alert').delay(5000).fadeOut();
 						$('#modal-tax').modal('hide'); 
 						$('#form-tax')[0].reset();
-						taxtable.ajax.reload();    
+						// taxtable.ajax.reload(); 
+						taxtable.clear().draw();
+						fetch_tax();   
 						
 					}
 					else
@@ -302,11 +306,12 @@
 				$.ajax({
 					url: "{{route('deletetax')}}",
 					method: "GET",
-					data: { taxid:taxid },
+					data: { taxid:taxid }, 
 					success: function(response){
 
 						console.log(response);
-						taxtable.ajax.reload();
+						taxtable.clear().draw();
+						fetch_tax();
 						$('.alert').empty();
 						$('.alert').append("<i class='fa fa-check'></i> "+response.success);
 						$('.alert').removeClass('hide');
@@ -335,22 +340,26 @@
 @section('datatable')
 <script>
 
-	$(document).ready(function() {
-		// $('#tax-table').DataTable();
-	    $('#tax-table').DataTable({
-	    	"processing": true,
-	    	"serverSide": true,
-	    	"ajax": "{{route('gettax')}}",
-	    	"columns": [
-	    		{ "data": "taxcode"},
-	    		{ "data": "taxrate"},
-	    		{ "data": "status"},
-	    		{ "data": "action", orderable: false, searchable: false}
-	    	]
-	    });
+	fetch_tax();
 
-		
-	});
+	function fetch_tax(){
+		$(document).ready(function() {
+			// $('#tax-table').DataTable();
+		    $('#tax-table').DataTable({
+		    	"processing": true,
+		    	"serverSide": true,
+		    	"ajax": "{{route('gettax')}}",
+		    	"bDestroy": true,
+		    	"columns": [
+		    		{ "data": "taxcode"},
+		    		{ "data": "taxrate"},
+		    		{ "data": "status"},
+		    		{ "data": "action", orderable: false, searchable: false}
+		    	]
+		    });
+		});
+	}
+	
 </script>
 @endsection
 

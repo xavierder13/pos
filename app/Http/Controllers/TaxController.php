@@ -12,8 +12,8 @@ class TaxController extends Controller
     
     public function index()
     {
-        // $taxes = Tax::all();    
-        return view('pages.tax.index');
+        $taxes = Tax::all();    
+        return view('pages.tax.index', compact('taxes'));
     }
 
     public function getdata()
