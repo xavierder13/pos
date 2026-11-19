@@ -1,0 +1,192 @@
+{
+    "store": {
+        "code": "MAIN",
+        "name": "Main Store",
+        "address": "Quezon City"
+    },
+    "stores": [
+        {
+            "code": "MAIN",
+            "name": "Main Store",
+            "address": "Quezon City"
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "Drinks"
+        },
+        {
+            "id": 2,
+            "name": "Food"
+        },
+        {
+            "id": 3,
+            "name": "Grocery"
+        },
+        {
+            "id": 4,
+            "name": "Household"
+        },
+        {
+            "id": 5,
+            "name": "Services"
+        }
+    ],
+    "products": [
+        {
+            "id": 15,
+            "name": "AA Batteries (4)",
+            "category_id": 4,
+            "unit": "pack",
+            "price": 14900,
+            "sc_pwd_eligible": false,
+            "availability": "in_stock"
+        },
+        {
+            "id": 1,
+            "name": "Americano",
+            "category_id": 1,
+            "unit": "pc",
+            "price": 12000,
+            "sc_pwd_eligible": true,
+            "availability": "available"
+        },
+        {
+            "id": 4,
+            "name": "Bottled Water 500ml",
+            "category_id": 1,
+            "unit": "pc",
+            "price": 2500,
+            "sc_pwd_eligible": true,
+            "availability": "in_stock"
+        },
+        {
+            "id": 2,
+            "name": "Cafe Latte",
+            "category_id": 1,
+            "unit": "pc",
+            "price": 15500,
+            "sc_pwd_eligible": true,
+            "availability": "available"
+        },
+        {
+            "id": 6,
+            "name": "Chicken Adobo Rice",
+            "category_id": 2,
+            "unit": "pc",
+            "price": 28500,
+            "sc_pwd_eligible": true,
+            "availability": "available"
+        },
+        {
+            "id": 13,
+            "name": "Dish Soap 750ml",
+            "category_id": 4,
+            "unit": "pc",
+            "price": 8900,
+            "sc_pwd_eligible": false,
+            "availability": "few_left"
+        },
+        {
+            "id": 10,
+            "name": "Eggs (1 dozen)",
+            "category_id": 3,
+            "unit": "box",
+            "price": 13500,
+            "sc_pwd_eligible": true,
+            "availability": "few_left"
+        },
+        {
+            "id": 5,
+            "name": "Ensaymada",
+            "category_id": 2,
+            "unit": "pc",
+            "price": 8500,
+            "sc_pwd_eligible": true,
+            "availability": "in_stock"
+        },
+        {
+            "id": 16,
+            "name": "Gift Wrapping",
+            "category_id": 5,
+            "unit": "pc",
+            "price": 5000,
+            "sc_pwd_eligible": false,
+            "availability": "available"
+        },
+        {
+            "id": 3,
+            "name": "Iced Tea",
+            "category_id": 1,
+            "unit": "pc",
+            "price": 9500,
+            "sc_pwd_eligible": true,
+            "availability": "available"
+        },
+        {
+            "id": 12,
+            "name": "Jasmine Rice 2kg",
+            "category_id": 3,
+            "unit": "pack",
+            "price": 16500,
+            "sc_pwd_eligible": true,
+            "availability": "in_stock"
+        },
+        {
+            "id": 11,
+            "name": "Loaf Bread",
+            "category_id": 3,
+            "unit": "pc",
+            "price": 18000,
+            "sc_pwd_eligible": true,
+            "availability": "in_stock"
+        },
+        {
+            "id": 17,
+            "name": "Local Delivery",
+            "category_id": 5,
+            "unit": "pc",
+            "price": 15000,
+            "sc_pwd_eligible": false,
+            "availability": "available"
+        },
+        {
+            "id": 8,
+            "name": "Pancit Canton Platter",
+            "category_id": 2,
+            "unit": "pc",
+            "price": 26500,
+            "sc_pwd_eligible": true,
+            "availability": "available"
+        },
+        {
+            "id": 7,
+            "name": "Pandesal (10 pcs)",
+            "category_id": 2,
+            "unit": "pack",
+            "price": 7500,
+            "sc_pwd_eligible": true,
+            "availability": "few_left"
+        },
+        {
+            "id": 14,
+            "name": "Paper Towels (6)",
+            "category_id": 4,
+            "unit": "pack",
+            "price": 21500,
+            "sc_pwd_eligible": false,
+            "availability": "in_stock"
+        },
+        {
+            "id": 9,
+            "name": "Whole Milk 1L",
+            "category_id": 3,
+            "unit": "pc",
+            "price": 11500,
+            "sc_pwd_eligible": true,
+            "availability": "in_stock"
+        }
+    ],
+    "generated_at": "2026-11-19T15:45:51+00:00"
+}

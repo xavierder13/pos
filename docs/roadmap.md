@@ -50,5 +50,7 @@ move shipped items to "Done" as one line each.
   register on the real catalog with per-class VAT; `make seed-demo`. 72 backend tests.
 - 2026-11-19 Marketing website (`website/`, "Kahero POS" placeholder brand, real app screenshots, PH pricing,
   demo form without a backend yet).
+- 2026-11-19 Website v2: the sample store's own site (Suki Corner Café & Grocery) at /v2/, menu, prices and
+  availability live from the new public `GET /api/storefront` (customer fields only, throttled), snapshot fallback.
 - Note: the register loads the whole active catalog in one call; a very large catalog will need
   search-as-you-type.

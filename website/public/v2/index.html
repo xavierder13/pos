@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suki Corner Café &amp; Grocery · Coffee, pandesal and grocery in Quezon City</title>
+  <meta name="description" content="Your neighbourhood café and grocery in Quezon City: brewed coffee, fresh pandesal, rice meals and everyday essentials. Order for delivery or drop by.">
+  <meta name="theme-color" content="#1f4d3a">
+  <!-- the POS API that feeds menu, prices and stock (public storefront endpoint) -->
+  <meta name="storefront-api" content="http://localhost:8210/api/storefront">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="wrap topbar__inner">
+      <span class="status" data-open-status><span class="status__dot"></span><span>Checking hours…</span></span>
+      <span class="topbar__note">Seniors &amp; PWD: <strong>20% off</strong> eligible items. Just show your ID.</span>
+    </div>
+  </div>
+
+  <header class="nav" data-nav>
+    <div class="wrap nav__inner">
+      <a class="logo" href="#top" aria-label="Suki Corner home">
+        <span class="logo__badge" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19"/><path d="M12 17h14v6a7 7 0 0 1-14 0zM26 18h2.5a3 3 0 0 1 0 6H26M15 10c0 2 2 2 2 4M20 9c0 2 2 2 2 4"/></svg>
+        </span>
+        <span class="logo__text"><strong>Suki Corner</strong><small>Café &amp; Grocery</small></span>
+      </a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#menu">Café menu</a>
+        <a href="#grocery">Grocery</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#visit">Visit us</a>
+      </nav>
+      <a class="btn btn--primary nav__cta" href="#delivery">Order for delivery</a>
+      <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ── hero ─────────────────────────────────────────── -->
+    <section class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="kicker">Your neighbourhood corner · <span data-store-name>Main Store</span>, <span data-store-address>Quezon City</span></p>
+          <h1>Kape, tinapay, at grocery, <em>sa kanto lang.</em></h1>
+          <p class="lead">Brewed coffee, warm pandesal and home-style rice meals, plus the everyday essentials you ran out of. Your neighbourhood corner store, open early, closing late.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="#menu">See today's menu</a>
+            <a class="btn btn--outline btn--lg" href="#delivery">Order for delivery</a>
+          </div>
+          <dl class="hero__facts">
+            <div><dt>Drinks from</dt><dd data-price-from="Drinks">₱—</dd></div>
+            <div><dt>Rice meals from</dt><dd data-price-from="Food">₱—</dd></div>
+            <div><dt>Delivery</dt><dd data-price-of="Local Delivery">₱—</dd></div>
+          </dl>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="plate plate--a"><span class="plate__emoji">☕</span><span class="plate__name">Cafe Latte</span><span class="plate__price" data-price-of="Cafe Latte">₱—</span></div>
+          <div class="plate plate--b"><span class="plate__emoji">🍛</span><span class="plate__name">Chicken Adobo Rice</span><span class="plate__price" data-price-of="Chicken Adobo Rice">₱—</span></div>
+          <div class="plate plate--c"><span class="plate__emoji">🥖</span><span class="plate__name">Pandesal (10 pcs)</span><span class="plate__price" data-price-of="Pandesal (10 pcs)">₱—</span></div>
+          <div class="ticket">
+            <span class="ticket__label">Fresh batch</span>
+            <strong>Pandesal</strong>
+            <span class="avail" data-avail-of="Pandesal (10 pcs)">…</span>
+          </div>
+          <div class="sun"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── live strip ──────────────────────────────────── -->
+    <div class="live">
+      <div class="wrap live__inner">
+        <span class="live__dot"></span>
+        <span data-live-note>Prices and stock come straight from our store counter.</span>
+      </div>
+    </div>
+
+    <!-- ── café menu ───────────────────────────────────── -->
+    <section class="section" id="menu">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker">Café menu</p>
+          <h2>Made to order, all day</h2>
+          <p>Coffee brewed when you order, and silog-style rice meals cooked fresh. Leaf-marked items get the senior and PWD discount.</p>
+        </header>
+        <div class="menu" data-menu>
+          <div class="menu__col">
+            <h3 class="menu__title"><span>☕</span> Drinks</h3>
+            <ul class="menu__list" data-category="Drinks"></ul>
+          </div>
+          <div class="menu__col">
+            <h3 class="menu__title"><span>🍽️</span> Food &amp; bakery</h3>
+            <ul class="menu__list" data-category="Food"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── grocery ─────────────────────────────────────── -->
+    <section class="section section--cream" id="grocery">
+      <div class="wrap">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="kicker">Grocery &amp; household</p>
+            <h2>Ran out? We probably have it.</h2>
+            <p>Check what's on our shelves before you walk over. Stock updates as we sell.</p>
+          </div>
+          <div class="filters" role="group" aria-label="Filter items">
+            <button type="button" aria-pressed="true" data-filter="all">All</button>
+            <button type="button" aria-pressed="false" data-filter="Grocery">Grocery</button>
+            <button type="button" aria-pressed="false" data-filter="Household">Household</button>
+            <button type="button" aria-pressed="false" data-filter="Drinks">Bottled drinks</button>
+          </div>
+        </header>
+        <div class="shelf" data-shelf aria-live="polite"></div>
+        <p class="shelf__legend">
+          <span class="avail avail--in_stock">In stock</span>
+          <span class="avail avail--few_left">Few left</span>
+          <span class="avail avail--sold_out">Sold out</span>
+          <span class="muted">Availability at <span data-store-name>Main Store</span> as of <span data-updated>—</span>.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ── delivery & services ─────────────────────────── -->
+    <section class="section" id="delivery">
+      <div class="wrap delivery">
+        <div class="delivery__copy">
+          <p class="kicker">Delivery &amp; services</p>
+          <h2>Too busy to walk over? We'll bring it.</h2>
+          <ol class="steps">
+            <li><strong>Message us</strong> your order on Messenger or by text. Any item on this page works.</li>
+            <li><strong>We confirm</strong> the total and the delivery time, usually within 10 minutes.</li>
+            <li><strong>Pay on arrival</strong> with cash, GCash or Maya. Cards are accepted at the store.</li>
+          </ol>
+          <div class="delivery__actions">
+            <a class="btn btn--primary btn--lg" href="#visit">Message us to order</a>
+          </div>
+          <p class="muted small">Delivery within our barangay and nearby areas. Bigger orders, ask us.</p>
+        </div>
+        <div class="services" data-services></div>
+      </div>
+    </section>
+
+    <!-- ── senior / PWD ─────────────────────────────────── -->
+    <section class="perk">
+      <div class="wrap perk__inner">
+        <div class="perk__badge" aria-hidden="true">20%</div>
+        <div>
+          <h2>Lolo, Lola, and our PWD suki</h2>
+          <p>You get 20% off plus the VAT exemption on eligible food, drinks and essentials, as the law requires (RA 9994 and RA 10754). Just show your senior citizen or PWD ID at the counter. Eligible items are marked <span class="leaf" aria-label="eligible">🍃</span> on this page.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── visit ────────────────────────────────────────── -->
+    <section class="section" id="visit">
+      <div class="wrap visit">
+        <div class="visit__card">
+          <p class="kicker">Visit us</p>
+          <h2 data-store-name>Main Store</h2>
+          <p class="visit__address" data-store-address>Quezon City</p>
+          <table class="hours" aria-label="Opening hours">
+            <tbody data-hours></tbody>
+          </table>
+          <div class="visit__actions">
+            <a class="btn btn--primary" data-directions href="https://www.google.com/maps/search/?api=1&amp;query=Quezon%20City" target="_blank" rel="noopener">Get directions</a>
+            <a class="btn btn--outline" href="#top">Message us</a>
+          </div>
+          <ul class="pay">
+            <li>Cash</li><li>GCash</li><li>Maya</li><li>Visa / Mastercard</li>
+          </ul>
+        </div>
+        <div class="map" aria-hidden="true">
+          <div class="map__road map__road--h"></div>
+          <div class="map__road map__road--v"></div>
+          <div class="map__road map__road--d"></div>
+          <div class="map__block map__block--1"></div>
+          <div class="map__block map__block--2"></div>
+          <div class="map__block map__block--3"></div>
+          <div class="map__block map__block--4"></div>
+          <div class="map__pin"><span>☕</span></div>
+          <div class="map__label" data-store-name>Main Store</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div>
+        <span class="logo logo--light"><span class="logo__text"><strong>Suki Corner</strong><small>Café &amp; Grocery</small></span></span>
+        <p>Kape, tinapay, at grocery, sa kanto lang.</p>
+      </div>
+      <div class="footer__links">
+        <a href="#menu">Café menu</a><a href="#grocery">Grocery</a><a href="#delivery">Delivery</a><a href="#visit">Visit us</a>
+      </div>
+      <p class="footer__fine">Prices include VAT. Menu and stock come live from our point of sale.<br>A sample store website for this project. Sample data, not a real business.</p>
+    </div>
+  </footer>
+
+  <script src="js/store.js" defer></script>
+</body>
+</html>

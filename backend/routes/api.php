@@ -16,6 +16,7 @@ use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\PasswordResetController;
 use App\Http\Controllers\API\Products\ProductController;
 use App\Http\Controllers\API\Register\RegisterCatalogController;
+use App\Http\Controllers\API\Storefront\StorefrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 | <module>.<action>. A new module: its routes here, its permissions in a
 | seeder listed in PermissionSeeder::MODULES.
 */
+
+// ── Public: the store's own website (no sign-in; customer-facing fields only) ──
+Route::get('/storefront', StorefrontController::class)->middleware('throttle:storefront')->name('storefront');
 
 Route::prefix('auth')->name('auth.')->controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->middleware('throttle:login')->name('login');

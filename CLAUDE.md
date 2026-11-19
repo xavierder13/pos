@@ -14,7 +14,7 @@ One git repo for everything (`xavierder13/pos`, branch `master`; CI in `.github/
 | `backend/` | Laravel API | working there: `backend/CLAUDE.md` first |
 | `frontend/` | React SPA, light navy & coral theme | working there: `frontend/CLAUDE.md` first |
 | `frontend/src/pages/register/` | the full-screen sell screen (real catalog; sales not saved until the Sales module) | touching the register |
-| `website/` | marketing site (static HTML/CSS/JS, placeholder brand "Kahero POS"), `make site` → :8213 | touching the site: `website/README.md` |
+| `website/` | v1 POS marketing site ("Kahero POS") at :8213; v2 the sample store's site ("Suki Corner") at :8213/v2/, live from public `GET /api/storefront` | touching a site: `website/README.md` |
 | `.claude/skills/pos-domain/` | money, tax, sales, stock, offline rules: the invariants | any sales, stock, money or tax code |
 | `docs/roadmap.md` | status, next items, the user's decisions, open questions | planning or starting a feature: grep `^#` headings, read only the relevant section |
 | `docs/decisions.md` | why things are the way they are (short, numbered) | before reversing a design choice |

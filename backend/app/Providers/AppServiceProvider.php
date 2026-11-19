@@ -27,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::before(fn ($user) => $user->hasRole(Rbac::ADMINISTRATOR) ? true : null);
 
         // sign-in attempts per email + IP
+        // the public storefront (store website): generous for browsing, capped against scraping
+        RateLimiter::for('storefront', fn (Request $request) => Limit::perMinute(60)->by($request->ip()));
+
         RateLimiter::for('login', fn (Request $request) => Limit::perMinute(10)
             ->by(strtolower((string) $request->input('email')).'|'.$request->ip()));
 
