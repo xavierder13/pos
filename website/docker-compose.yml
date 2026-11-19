@@ -1,0 +1,11 @@
+# The marketing site: static files served by nginx.  docker compose up -d  → http://localhost:8213
+name: pos-site
+
+services:
+  site:
+    image: nginx:alpine
+    container_name: pos_site
+    ports:
+      - "${SITE_PORT:-8213}:80"
+    volumes:
+      - ./public:/usr/share/nginx/html:ro,Z

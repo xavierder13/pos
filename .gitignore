@@ -1,0 +1,5 @@
+# The workspace repo tracks only the shared Claude files and docs; each app is its own repo.
+/backend/
+/frontend/
+.claude/settings.local.json
+test-results/*.png
