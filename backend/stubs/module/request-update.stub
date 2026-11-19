@@ -1,0 +1,5 @@
+<?php
+
+namespace App\Http\Requests\{{Models}};
+
+class Update{{Model}}Request extends Store{{Model}}Request {}

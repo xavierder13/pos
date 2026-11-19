@@ -1,0 +1,9 @@
+    // ── {{Titles}} (make:module) ─────────────────────────────────────
+    Route::prefix('{{kebabs}}')->name('{{kebabs}}.')->controller(\App\Http\Controllers\API\{{Models}}\{{Model}}Controller::class)->group(function () {
+        Route::get('/', 'index')->middleware('permission:{{kebab}}-list')->name('index');
+        Route::post('/', 'store')->middleware('permission:{{kebab}}-create')->name('store');
+        Route::get('/{{{model}}}', 'show')->middleware('permission:{{kebab}}-list|{{kebab}}-edit')->name('show');
+        Route::put('/{{{model}}}', 'update')->middleware('permission:{{kebab}}-edit')->name('update');
+        Route::delete('/{{{model}}}', 'destroy')->middleware('permission:{{kebab}}-delete')->name('destroy');
+    });
+

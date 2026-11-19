@@ -7,10 +7,12 @@ files it points to. Read those only when the task needs them.
 
 ## Map
 
+One git repo for everything (`xavierder13/pos`, branch `master`; CI in `.github/workflows/ci.yml`).
+
 | Path | What | Read when |
 |---|---|---|
-| `backend/` | Laravel API (own git repo) | working there: `backend/CLAUDE.md` first |
-| `frontend/` | React SPA, light navy & coral theme (own git repo) | working there: `frontend/CLAUDE.md` first |
+| `backend/` | Laravel API | working there: `backend/CLAUDE.md` first |
+| `frontend/` | React SPA, light navy & coral theme | working there: `frontend/CLAUDE.md` first |
 | `frontend/src/pages/register/` | the full-screen sell screen (real catalog; sales not saved until the Sales module) | touching the register |
 | `website/` | marketing site (static HTML/CSS/JS, placeholder brand "Kahero POS"), `make site` → :8213 | touching the site: `website/README.md` |
 | `.claude/skills/pos-domain/` | money, tax, sales, stock, offline rules: the invariants | any sales, stock, money or tax code |

@@ -10,6 +10,12 @@ at the edge (`utils/money.js`). Weighed quantities may be decimal; money never i
 Cashiers need every pixel and no navigation to wander into. `layout: 'register'` on a route renders it in
 `RegisterLayout` (slim bar, idle sign-out kept). It may later become its own offline app (PWA/Tauri).
 
+## D4 · One repository for the whole POS (2026-11-19)
+The user chose a single workspace repo (`xavierder13/pos`, `master`) over separate API / web repos: backend,
+frontend, website and the Claude files ship together and one commit can change the API and its caller.
+CI is one root workflow with a job per app (path-filtered). The old project that lived in that repo is kept
+on the `legacy-master` branch.
+
 ## D3 · Claude files: small router + lazy skills + agents (2026-11-19)
 Root `CLAUDE.md` is loaded every session, so it only routes (~4 KB). Procedures and domain rules are skills
 (only their descriptions cost tokens until used); review/testing run in agents (own context). Modelled on

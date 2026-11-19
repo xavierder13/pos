@@ -1,0 +1,498 @@
+/* src/index.css — global styles. The colour variables (--accent, --surface, --muted …)
+   come from COLORS in utils/theme.js (applyCssVars in main.jsx): change colours there. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  /* literal colours: painted before the script sets the variables (no white flash) */
+  background: #e9e4e0;
+  color: #172a39;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* slim dark scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c9c1ba transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c1ba;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ada49c;
+}
+
+/* keyboard focus is always visible: an accent ring (mouse clicks don't show it) */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* dialogs and drawers: a hairline edge and a soft navy shadow */
+.ant-modal-container,
+.ant-modal-content,
+.ant-drawer-content {
+  box-shadow: 0 0 0 1px var(--border), 0 24px 80px -20px rgba(23, 42, 57, 0.35);
+}
+.ant-modal-mask,
+.ant-drawer-mask {
+  backdrop-filter: blur(3px);
+}
+
+/* cards: a faint accent highlight along the top edge */
+.ant-card {
+  background-image: linear-gradient(180deg, rgba(252, 86, 60, 0.025), transparent 120px);
+}
+
+/* the signed-in user's initials: accent gradient disc */
+.app-avatar.ant-avatar {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  font-weight: 700;
+}
+
+.full-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--black);
+}
+
+/* ── app shell ─────────────────────────────────────────── */
+.app-logo {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 0 18px -2px var(--accent-glow);
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 64px;
+  padding: 0 18px;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+/* the sidebar is a navy panel: its text and borders switch to the on-navy colours */
+.app-sider {
+  --text: var(--on-navy);
+  --muted: var(--on-navy-muted);
+  --border: var(--navy-border);
+  border-right: 1px solid var(--border);
+}
+.app-sider .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+}
+.app-sider .ant-menu {
+  flex: 1;
+  padding-top: 8px;
+  border-inline-end: 0 !important;
+}
+/* the selected entry: an accent bar on its left */
+.app-sider .ant-menu-dark .ant-menu-item-selected {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.app-sider__footer {
+  padding: 12px 18px;
+  color: var(--muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+}
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 4px 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.app-user:hover {
+  border-color: var(--accent);
+}
+.app-content {
+  position: relative;
+}
+/* a faint accent light at the top of every page */
+.app-content::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 280px;
+  background: radial-gradient(600px 200px at 20% 0%, rgba(252, 86, 60, 0.07), transparent 70%);
+  pointer-events: none;
+}
+.app-content > * {
+  position: relative;
+}
+
+/* stat cards on the dashboard */
+.stat-card {
+  overflow: hidden;
+  position: relative;
+}
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(252, 86, 60, 0.16), transparent 70%);
+  pointer-events: none;
+}
+.stat-card .anticon {
+  color: var(--accent);
+}
+
+/* ── notifications ─────────────────────────────────────── */
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.notif-item:hover {
+  background: rgba(23, 42, 57, 0.04);
+}
+.notif-item.is-unread {
+  background: rgba(252, 86, 60, 0.05);
+}
+.notif-item__icon {
+  font-size: 18px;
+  line-height: 22px;
+}
+.notif-item__title {
+  font-weight: 600;
+}
+.notif-item.is-unread .notif-item__title::after {
+  content: '';
+}
+.notif-item__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* ── row actions (components/ActionButton) ─────────────────
+   Tonal icon squares: the icon in the action's colour on a faint wash of it,
+   brightening on hover. Colours: COLORS.action* in utils/theme.js.
+   AntD 6 paints buttons from its own --ant-btn-* variables, so the colours are
+   set through those; the selector repeats AntD's own (.ant-btn-color-default.ant-btn-variant-text)
+   plus .row-action, so it outranks it whatever order the styles load in. */
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action {
+  --act: var(--action-view);
+  --ant-btn-text-color: var(--act);
+  --ant-btn-text-color-hover: color-mix(in srgb, var(--act) 75%, #000);
+  --ant-btn-text-color-active: var(--ant-btn-text-color-hover);
+  --ant-btn-bg-color: color-mix(in srgb, var(--act) 9%, transparent);
+  --ant-btn-bg-color-hover: color-mix(in srgb, var(--act) 20%, transparent);
+  --ant-btn-bg-color-active: color-mix(in srgb, var(--act) 28%, transparent);
+  --ant-btn-border-color: color-mix(in srgb, var(--act) 24%, transparent);
+  --ant-btn-border-color-hover: color-mix(in srgb, var(--act) 70%, transparent);
+  --ant-btn-border-color-active: var(--act);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 8px;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s;
+}
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action:not(:disabled):not(.ant-btn-disabled):hover {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--act) 12%, transparent), 0 6px 14px -8px var(--act);
+  transform: translateY(-1px);
+}
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action:not(:disabled):not(.ant-btn-disabled):active {
+  box-shadow: none;
+  transform: none;
+}
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action:focus-visible {
+  outline: 2px solid var(--act);
+  outline-offset: 2px;
+}
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action:disabled,
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action.ant-btn-disabled {
+  opacity: 0.35;
+}
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action.row-action--edit { --act: var(--action-edit); }
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action.row-action--assign { --act: var(--action-assign); }
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action.row-action--download { --act: var(--action-download); }
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action.row-action--confirm { --act: var(--action-confirm); }
+/* delete fills solid on hover: the one action that can't be undone */
+.ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action.row-action--delete {
+  --act: var(--action-delete);
+  --ant-btn-text-color-hover: #fff;
+  --ant-btn-bg-color-hover: var(--act);
+  --ant-btn-bg-color-active: color-mix(in srgb, var(--act) 85%, #000);
+  --ant-btn-border-color-hover: var(--act);
+}
+/* a row's actions are a touch softer until the row is hovered */
+.ant-table-row .ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action {
+  opacity: 0.85;
+}
+.ant-table-row:hover .ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action,
+.ant-table-row .ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action:focus-visible {
+  opacity: 1;
+}
+
+/* ── POS shell ─────────────────────────────────────────── */
+
+/* money and counts line up in columns (tables, totals, tiles) */
+.money,
+.ant-table-cell,
+.ant-statistic-content {
+  font-variant-numeric: tabular-nums;
+}
+
+/* brand: name + "Back office" under it */
+.app-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.app-brand__text small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* the sidebar's "Open Register" call to action */
+.sider-cta {
+  padding: 14px 12px 4px;
+}
+.sider-cta .ant-btn {
+  height: 44px;
+  font-size: 15px;
+}
+.app-sider.is-collapsed .sider-cta {
+  padding: 14px 14px 4px;
+}
+
+/* section headings (Sell / Back office / Settings) */
+.app-sider .ant-menu-item-group-title {
+  padding: 16px 24px 6px !important;
+  color: var(--muted) !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.app-sider.is-collapsed .ant-menu-item-group-title {
+  display: none;
+}
+/* collapsed: a hairline between sections instead of their names */
+.app-sider.is-collapsed .ant-menu-item-group + .ant-menu-item-group::before {
+  content: '';
+  display: block;
+  height: 1px;
+  margin: 8px 20px;
+  background: var(--border);
+}
+
+/* status: connection pill + clock */
+.status-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+.net-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--surface-2);
+}
+.net-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.net-pill.is-online { color: var(--success); }
+.net-pill.is-online .net-pill__dot { background: var(--success); box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 22%, transparent); }
+.net-pill.is-offline { color: #fff; background: var(--error); }
+.net-pill.is-offline .net-pill__dot { background: #fff; animation: net-blink 1s steps(2) infinite; }
+@keyframes net-blink { 50% { opacity: 0.2; } }
+.status-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+.status-clock strong { font-size: 14px; }
+.status-clock span { color: var(--muted); font-size: 11px; }
+
+/* touch screens (tablets at the counter): larger tap targets */
+@media (pointer: coarse) {
+  .ant-btn.ant-btn-color-default.ant-btn-variant-text.row-action {
+    width: 40px;
+    height: 40px;
+  }
+  .app-sider .ant-menu-item,
+  .app-sider .ant-menu-submenu-title {
+    height: 48px !important;
+    line-height: 48px !important;
+  }
+  .ant-table-row > td {
+    padding-block: 14px !important;
+  }
+}
+
+/* ── dashboard ─────────────────────────────────────────── */
+.kpi-card .ant-card-body { padding: 18px 20px; }
+.kpi {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.kpi__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--kpi) 12%, transparent);
+  color: var(--kpi);
+  font-size: 20px;
+}
+.kpi__label { color: var(--muted); font-size: 13px; }
+.kpi__value { font-size: 26px; font-weight: 800; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.kpi__hint { color: var(--faint); font-size: 12px; }
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.quick-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 96px;
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--elevated);
+  color: var(--text);
+  font: 600 14px 'Inter', system-ui, sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.08s;
+}
+.quick-action .anticon { font-size: 22px; color: var(--accent); }
+.quick-action small { color: var(--muted); font-weight: 400; font-size: 12px; }
+.quick-action:hover:not(:disabled) { border-color: var(--accent); box-shadow: 0 8px 20px -14px var(--accent-glow); }
+.quick-action:active:not(:disabled) { transform: scale(0.98); }
+.quick-action:disabled { cursor: not-allowed; opacity: 0.55; }
+.quick-action--primary { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }
+.quick-action--primary .anticon { color: var(--accent-on-navy); }
+.quick-action--primary small { color: var(--on-navy-muted); }
+.quick-action--primary:hover:not(:disabled) { border-color: var(--accent-on-navy); }
+
+
+/* ── inventory ─────────────────────────────────────────── */
+.doc-lines {
+  padding: 12px 12px 4px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+.doc-lines .ant-form-item { margin-bottom: 10px; }
+.doc-lines > .ant-btn-dashed { margin-bottom: 8px; }
+.doc-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 10px 4px 0;
+  font-size: 16px;
+}
+.doc-total span { color: var(--muted); }
+.stock-actions .ant-btn { height: 40px; }
+.low-list { list-style: none; margin: 0; padding: 0; }
+.low-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.low-list li:last-child { border-bottom: 0; }
+.low-list li > div { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.low-list small { color: var(--muted); font-size: 12px; }
+.low-list .money { font-weight: 700; min-width: 64px; text-align: right; }

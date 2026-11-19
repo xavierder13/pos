@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Controllers\API\{{Models}};
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{{Models}}\Store{{Model}}Request;
+use App\Http\Requests\{{Models}}\Update{{Model}}Request;
+use App\Http\Resources\{{Models}}\{{Model}}Resource;
+use App\Models\{{Model}};
+use App\Services\{{Models}}\{{Model}}Service;
+use App\Support\ListSort;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+
+// Thin controller: validate (Form Request) → Service → Resource.
+class {{Model}}Controller extends Controller
+{
+    public function __construct(private readonly {{Model}}Service ${{models}}) {}
+
+    // GET /{{kebabs}}?search=&active=1|0&per_page=&page=&sort=&order=
+    public function index(Request $request): AnonymousResourceCollection
+    {
+        $filters = $request->validate([
+            'search' => ['nullable', 'string', 'max:100'],
+            'active' => ['nullable', 'boolean'],
+            'per_page' => ['nullable', 'integer', 'min:1', 'max:100'],
+        ] + ListSort::rules({{Model}}Service::SORTS));
+
+        return {{Model}}Resource::collection($this->{{models}}->paginate($filters));
+    }
+
+    public function show({{Model}} ${{model}}): {{Model}}Resource
+    {
+        return new {{Model}}Resource(${{model}});
+    }
+
+    public function store(Store{{Model}}Request $request): JsonResponse
+    {
+        return (new {{Model}}Resource($this->{{models}}->create($request->validated())))->response()->setStatusCode(201);
+    }
+
+    public function update(Update{{Model}}Request $request, {{Model}} ${{model}}): {{Model}}Resource
+    {
+        return new {{Model}}Resource($this->{{models}}->update(${{model}}, $request->validated()));
+    }
+
+    public function destroy({{Model}} ${{model}}): JsonResponse
+    {
+        $this->{{models}}->delete(${{model}});
+
+        return response()->json(['message' => '{{Title}} deleted.']);
+    }
+}

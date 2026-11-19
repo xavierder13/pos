@@ -1,0 +1,39 @@
+# Development: Vite dev server with hot reload, code bind-mounted.
+#   docker compose up -d --build          → http://localhost:${WEB_DEV_PORT}
+# Production build locally (nginx):
+#   docker compose --profile prod up -d --build   → http://localhost:${WEB_PORT}
+
+name: ${APP_SLUG:-pos}-web
+
+services:
+  web-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ${APP_SLUG:-pos}_web_dev
+    env_file:
+      - .env
+    ports:
+      - "${WEB_DEV_PORT:-5210}:5173"
+    volumes:
+      - .:/app:Z                            # ← mount everything
+      - node_modules:/app/node_modules      # ← persist node_modules
+    # restart: unless-stopped
+
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+        VITE_APP_NAME: ${VITE_APP_NAME}
+        VITE_CURRENCY: ${VITE_CURRENCY:-PHP}
+        VITE_LOCALE: ${VITE_LOCALE:-en-PH}
+    container_name: ${APP_SLUG:-pos}_web_app
+    ports:
+      - "${WEB_PORT:-3210}:80"
+    profiles: ["prod"]
+    # restart: unless-stopped
+
+volumes:
+  node_modules:

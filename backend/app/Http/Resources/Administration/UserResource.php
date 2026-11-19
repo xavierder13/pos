@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Resources\Administration;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/** @mixin User */
+class UserResource extends JsonResource
+{
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'active' => $this->active,
+            'must_change_password' => $this->must_change_password,
+            'last_login_at' => $this->last_login_at?->toIso8601String(),
+            // each role with its permissions (when loaded): the SPA's Roles & Permissions viewer
+            'roles' => $this->whenLoaded('roles', fn () => $this->roles->map(fn ($role) => [
+                'id' => $role->id,
+                'name' => $role->name,
+                'permissions' => $role->relationLoaded('permissions')
+                    ? $role->permissions->map->only(['id', 'name'])->sortBy('name')->values()
+                    : [],
+            ])->sortBy('name')->values()),
+            'created_at' => $this->created_at?->toIso8601String(),
+        ];
+    }
+}

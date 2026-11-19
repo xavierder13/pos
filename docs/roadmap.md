@@ -27,6 +27,7 @@ move shipped items to "Done" as one line each.
   `.claude/skills/pos-domain/areas/ph-compliance.md`.
 
 - Multiple locations from the start (stores + warehouses). (user, 2026-11-19)
+- One GitHub repo for everything: `xavierder13/pos`, branch `master`; old project kept on `legacy-master`. (user, 2026-11-19)
 
 ## Open questions (for the user)
 

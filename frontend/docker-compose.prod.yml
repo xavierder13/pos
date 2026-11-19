@@ -1,0 +1,25 @@
+# Production build of the SPA, served by nginx. Standalone: use it on its own.
+#   docker compose -f docker-compose.prod.yml up -d --build
+# Listens on localhost only: a reverse proxy on the host does HTTPS.
+
+name: ${APP_SLUG:-pos}-web-prod
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:?set VITE_API_BASE_URL in .env}
+        VITE_APP_NAME: ${VITE_APP_NAME:-POS}
+        VITE_CURRENCY: ${VITE_CURRENCY:-PHP}
+        VITE_LOCALE: ${VITE_LOCALE:-en-PH}
+    container_name: ${APP_SLUG:-pos}_web_prod_app
+    restart: unless-stopped
+    ports:
+      - "${WEB_BIND:-127.0.0.1}:${WEB_PORT:-3210}:80"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
